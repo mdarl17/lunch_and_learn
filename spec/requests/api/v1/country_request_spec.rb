@@ -7,7 +7,7 @@ RSpec.describe "Api::V1::Countries", type: :request do
       get search_country_name_path(name), headers: {"CONTENT_TYPE" => "application/json"}, params: { name: name }
 
       expect(response).to have_http_status(:success)
-      json_response = JSON.parse(response.body, symbolize_names: true)
+      json_response = JSON.parse(response[:data], symbolize_names: true)
 
       expect(json_response[:name]).to eq("Italy")
       expect(json_response[:latitude]).to eq(41.9)

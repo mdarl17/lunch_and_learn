@@ -7,12 +7,16 @@ RSpec.describe "REST countries API search" do
 
     describe "#get_country_by_name" do
       scenario "user submits valid country name", :vcr do
-        search = @service.get_country_by_name("usa")
-        expect(search).to be_a Array
-        expect(search.first).to be_a Hash
-        expect(search.first[:name][:common]).to eq("United States")
-        expect(search.first[:capitalInfo][:latlng]).to eq([38.89, -77.05])
+        json_response = @service.search_name("usa")
+        lat_long = json_response[0][:capitalInfo]
+        expect(json_response).to be_an Array
+        expect(lat_long).to be_a Hash
+        expect(lat_long.count).to eq(1)
+        expect(lat_long.keys).to eq([:latlng])
+        expect(lat_long.keys.count).to eq(1)
+        expect(json_response.first[:name][:common]).to eq("United States")
+        expect(json_response.first[:capitalInfo][:latlng]).to eq([38.89, -77.05])
       end
-    end   
+    end
   end
 end

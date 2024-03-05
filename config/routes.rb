@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  get "/api/v1/name/:name", to: "api/v1/countries#search_name", as: "search_country_name"
 end

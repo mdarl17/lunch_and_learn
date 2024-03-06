@@ -130,7 +130,8 @@ GEM
     irb (1.11.2)
       rdoc
       reline (>= 0.4.2)
-    json-serializer (1.0.0)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     launchy (3.0.0)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -295,7 +296,7 @@ DEPENDENCIES
   faker
   faraday
   figaro
-  json-serializer
+  jsonapi-serializer (~> 2.2)
   launchy
   orderly
   pg (~> 1.1)

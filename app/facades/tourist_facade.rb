@@ -21,10 +21,13 @@ class TouristFacade
     return false if val.class != Float
   end
 
-  def make_attraction_poros(parsed)
-    attraction_objs = parsed.map do |attraction|
-      { name: attraction[:properties][:name], 
-        address: attraction[:properties][:formatted], 
+  def make_attraction_poros(country_data)
+    attraction_objs = country_data.map do |attraction|
+      {
+        id: "null",
+        type: "tourist_site",
+        name: attraction[:properties][:name],
+        address: attraction[:properties][:address_line2], 
         place_id: attraction[:properties][:place_id] 
       }
     end

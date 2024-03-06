@@ -31,6 +31,7 @@ gem "bootsnap", require: false
 
 gem "figaro"
 
+gem "jsonapi-serializer", "~> 2.2"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -51,7 +52,6 @@ group :development, :test do
   gem "webmock"
   gem "vcr"
   gem "faraday"
-  gem "json-serializer"
   gem "shoulda-matchers"
   gem "orderly"
 end

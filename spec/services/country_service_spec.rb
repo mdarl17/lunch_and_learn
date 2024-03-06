@@ -1,5 +1,5 @@
 require "rails_helper"
-RSpec.describe "REST countries API search" do 
+RSpec.describe "REST countries API search", vcr: true, type: :service do 
   describe "CountryService" do 
     before(:each) do 
       @service = CountryService.new

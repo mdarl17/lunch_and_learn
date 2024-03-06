@@ -1,7 +1,7 @@
 class CountryFacade 
   def country_by_name(name)
     service = CountryService.new
-    search_res = service.search_name(name)
+    search_res = service.search_name(name.gsub(/\s+/, "%20"))
     if search_res.present?
       name = search_res[0][:name][:common]
       lat_long = search_res[0][:capitalInfo][:latlng]

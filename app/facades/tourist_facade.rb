@@ -5,7 +5,6 @@ class TouristFacade
 
     # if right_type?(lat) && right_type?(lon)
       res = TouristService.new.find_attractions_with_lat_and_lon(lat, lon)
-
     # else
       # return "Wrong type error"
     # end
@@ -31,7 +30,7 @@ class TouristFacade
         place_id: attraction[:properties][:place_id] 
       }
     end
-    attraction_objs.each do |attraction|
+    test = attraction_objs.map do |attraction|
       AttractionPoro.new(attraction)
     end
   end

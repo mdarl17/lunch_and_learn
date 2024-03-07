@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Geoapify Places API - tourist site search", vcr: true, type: :service do 
+RSpec.describe "Geoapify Places API - tourist site search", :vcr, type: :service do 
   before(:each) do 
     @service = TouristService.new
   end
@@ -35,31 +35,17 @@ RSpec.describe "Geoapify Places API - tourist site search", vcr: true, type: :se
       
       happy_countries.each do |country|
         attractions = TouristFacade.new.find_local_attractions(country)
-        expect(attractions).to be_a Array
+        expect(attractions).to respond_to
         expect(attractions.length).to eq(10)
 
         attractions.each.with_index do |attraction, i|
-          expect(attraction.keys).to eq([:id, :type, :name, :address, :place_id])
-          expect(attraction.keys.count).to eq(5)
-          expect(attraction).to be_a Hash
-          if country == "Latvia"
-            expect(attractions[i][:id]).to eq("null")
-            expect(attractions[i][:type]).to eq("tourist_site")
-            expect(attractions[i][:name]).to eq(attraction[:name])
-            # expect(attraction[:address]).to eq("11. novembra krastmala, Riga, LV-1050, Latvia")
-            # expect(attraction[:place_id]).to eq("51c0b8af5ea0193840598f297d748f794c40f00103f9014c3c2b4d000000009203104c69656c616973204b72697374617073")
-            # distance threshold for capital (lat/lon) and each attraction? Within certain distance? Need to look closer at docs and more cleverly to figure this test out
-            # latvia_lat_long = [find_local_attractions("Latvia")[:lat], find_local_attractions(name)[:lon]]
-          end
+          expect(attraction.instance_variables).to eq([:@id, :@type, :@name, :@address, :@place_id])
+          expect(attraction.instance_variables.count).to eq(5)
+          expect(attraction).to be_a AttractionPoro
+          expect(attraction.id).to eq(nil)
+          expect(attraction.type).to eq("tourist_site")
         end
-        
-        # if country == "France"
-        #   expect(attraction[:name]).to eq
-        #   expect(attraction[:address]).to eq
-        #   expect(attraction[:place_id]).to eq("51c0b8af5ea0193840598f297d748f794c40f00103f9014c3c2b4d000000009203104c69656c616973204b72697374617073")
-        # end
       end
     end
   end
-
 end 

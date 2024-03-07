@@ -1,10 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::countries", :vcr, type: :request do 
-  describe "api/v1/name" do 
+  describe "api/v1/countries/name=?" do 
     it "returns a country's trivia and facts, including their latitude and longitude position" do
-      @name = "Italy"
-      get search_country_name_path(@name), headers: {"CONTENT_TYPE" => "application/json"}
+      name = "Italy" 
+      get search_country_name_path, headers: {"CONTENT_TYPE" => "application/json" }, params: { name: name }
       expect(response).to have_http_status(:success)
       json_response = JSON.parse(response.body, symbolize_names: true)
 

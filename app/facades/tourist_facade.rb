@@ -12,7 +12,7 @@ class TouristFacade
   end
 
   def convert_name_to_lat_lon(name)
-    country = CountryFacade.new.country_by_name(name)
+    country = RandomCountryFacade.new.country_by_name(name)
     { lat: country.latitude, lon: country.longitude }
   end
   

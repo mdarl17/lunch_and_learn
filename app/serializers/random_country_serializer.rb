@@ -1,4 +1,4 @@
-class CountrySerializer
+class RandomCountrySerializer
   include JSONAPI::Serializer
 
   attributes :id, :name, :latitude, :longitude

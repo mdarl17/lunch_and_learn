@@ -2,7 +2,7 @@ require "rails_helper"
 RSpec.describe "REST countries API search", :vcr, type: :service do 
   describe "CountryService" do 
     before(:each) do 
-      @service = RandomCountryService.new
+      @service = SelectedCountryService.new
     end
 
     describe "#get_country_by_name" do

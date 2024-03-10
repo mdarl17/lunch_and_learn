@@ -46,11 +46,10 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "pry"
+  gem "byebug"
   gem "simplecov"
   gem "capybara"
   gem "launchy"
-  gem "webmock"
-  gem "vcr"
   gem "faraday"
   gem "shoulda-matchers"
   gem "orderly"
@@ -61,3 +60,8 @@ group :development do
   # gem "spring"
 end
 
+
+group :test do
+  gem "webmock"
+  gem "vcr"
+end
